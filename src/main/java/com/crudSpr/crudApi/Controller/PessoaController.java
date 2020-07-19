@@ -47,6 +47,20 @@ public class PessoaController {
 		return pessoaRespository.save(pessoa);
 	}
 	
+	// atualizando um dado existente no banco de dados
+  	 @RequestMapping(value = "/pessoa/{id}", method = RequestMethod.PUT)
+  	 public ResponseEntity<Pessoa> put(@PathVariable(value = "id")long id, @Valid @RequestBody Pessoa newPessoa){
+  		 Optional<Pessoa> oldPessoa = pessoaRespository.findById(id);
+  		  if(oldPessoa.isPresent()) {
+  			  Pessoa pessoa = oldPessoa.get();
+  			  pessoa.setNome(newPessoa.getNome());
+  			  pessoaRespository.save(pessoa);
+  			  return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
+  		  }else {
+  			  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  		  }
+  	 }
+  	
 }
 
 
