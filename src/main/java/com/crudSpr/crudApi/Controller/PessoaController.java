@@ -3,10 +3,13 @@ package com.crudSpr.crudApi.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +41,30 @@ public class PessoaController {
 		 }
  	}
 	
+	// Salvando dados no banco de dados 
+	@RequestMapping(value = "/pessoa/{id}", method = RequestMethod.POST)
+	public Pessoa create(@Valid @RequestBody Pessoa pessoa) {
+		return pessoaRespository.save(pessoa);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
