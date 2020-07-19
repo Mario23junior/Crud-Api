@@ -32,7 +32,6 @@ public class PessoaController {
 	//Listando dados por id 
 	@RequestMapping(value = "/pessoa/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pessoa> GetById(@PathVariable(value = "id") long id){
-		
 		Optional<Pessoa> pessoa = pessoaRespository.findById(id);
 		 if(pessoa.isPresent()) {
 			 return new ResponseEntity<Pessoa>(pessoa.get(), HttpStatus.OK);
@@ -60,27 +59,41 @@ public class PessoaController {
   			  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   		  }
   	 }
+  	 
+  	 
+  	 // Eliminando dados por - id
+  	 @RequestMapping(value = "/pessoa/{id}", method = RequestMethod.DELETE)
+  	 public ResponseEntity<Pessoa> Delete(@PathVariable(value = "id")long id){
+  		 Optional<Pessoa> pessoa = pessoaRespository.findById(id);
+  		 if(pessoa.isPresent()) {
+  			 pessoaRespository.delete(pessoa.get());
+  			 return new ResponseEntity<Pessoa>(HttpStatus.OK);
+  		 }else {
+  			 return new ResponseEntity<Pessoa>(HttpStatus.NOT_FOUND);
+  		 }
+  	 }
+  	 
+  
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
   	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
